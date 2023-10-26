@@ -6,9 +6,9 @@ import ChoiceButton from '../src/components/buttons/choiceButton';
 
 describe('Choices', () => {
   it('renders buttons', () => {
-    render(<ChoiceButton type="rock"/>)
-    render(<ChoiceButton type="paper"/>)
-    render(<ChoiceButton type="scissors"/>)
+    render(<ChoiceButton type="rock" src="../src/assets/rock-btn.png"/>)
+    render(<ChoiceButton type="paper" src="../src/assets/paper-btn.png"/>)
+    render(<ChoiceButton type="scissors" src="../src/assets/scissors-btn.png"/>)
 
     expect(screen.getByAltText('rock')).toBeInTheDocument();
     expect(screen.getByAltText('paper')).toBeInTheDocument();
