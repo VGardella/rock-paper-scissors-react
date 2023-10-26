@@ -5,9 +5,9 @@ ChoiceButton.propTypes = {
     src: PropTypes.string,
 }
 
-function ChoiceButton({ type }) {
+function ChoiceButton({ type, src }) {
     return(
-        <img className='choice-btn' alt={ type }></img>
+        <img className='choice-btn' alt={ type } src={ src }></img>
     )
 }
 
