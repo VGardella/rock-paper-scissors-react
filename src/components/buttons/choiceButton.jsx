@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import './choiceButtons.css'
 
 ChoiceButton.propTypes = {
     type: PropTypes.string,
