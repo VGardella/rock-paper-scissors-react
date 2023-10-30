@@ -1,0 +1,20 @@
+#restart{
+    background-color: #e35760;
+    height: 40px;
+    width: 140px;
+    border: 0px;
+    border-radius: 5px;
+    font-family: 'Titan One';
+    color: white;
+}
+
+#restart:hover{
+    background-color: #bd0d22;
+    color: rgb(202, 202, 202);
+    cursor: pointer;
+}
+
+@font-face {
+    font-family: 'Titan One';
+    src: url(../../fonts/TitanOne-Regular.ttf) format('truetype');
+}
