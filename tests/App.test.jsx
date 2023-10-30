@@ -2,8 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ChoiceButton from '../src/components/buttons/choiceButton';
+import RestartButton from '../src/components/buttons/restartButton';
 
-// Choice buttons
+// Buttons
 
 describe('Choices', () => {
   it('renders buttons', () => {
@@ -28,3 +29,11 @@ describe('Choices', () => {
 });
 
 // hover() returns a promise, we have to 'await' it.
+
+describe('Restart game', () => {
+  it('renders button', () => {
+    render(<RestartButton />);
+
+    expect(screen.getByRole('button')).toBeInTheDocument();
+  })
+})
