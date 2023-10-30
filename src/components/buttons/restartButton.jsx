@@ -2,7 +2,7 @@ import './restartButton.css';
 
 function RestartButton() {
     return(
-        <button className='reset' id='reset'>
+        <button className='restart' id='restart'>
             Restart game
         </button>
     )
