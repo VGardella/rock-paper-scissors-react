@@ -1,0 +1,20 @@
+.results{
+    background-color: #6f849c;
+    color: white;
+    border-radius: 10px;
+    font-family: 'Concert One', cursive;
+    font-size: 20px;
+    height: 100px; 
+    width: 300px; 
+    margin: 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+
+@font-face {
+    font-family: 'Concert One';
+    src: url(../../fonts/ConcertOne-Regular.ttf) format('truetype');
+}
