@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ChoiceButton from '../src/components/buttons/choiceButton';
 import RestartButton from '../src/components/buttons/restartButton';
+import ResultsScreen from '../src/components/result-screen/resultsScreen';
 
 // Buttons
 
@@ -23,17 +24,28 @@ describe('Choices', () => {
     const user = userEvent.setup();
     render(<ChoiceButton type="rock" src="../src/assets/rock-btn.png" hover="../src/assets/rock-btn2.png"/>);
 
-    await user.hover(screen.getByAltText('rock'));
+    await user.hover(screen.getByAltText('rock')); // hover() returns a promise, we have to 'await' it.
     expect(screen.getByAltText('rock')).toHaveAttribute('src', '../src/assets/rock-btn2.png');
   });
 });
 
-// hover() returns a promise, we have to 'await' it.
-
-describe('Restart game', () => {
+describe('Restart', () => {
   it('renders button', () => {
     render(<RestartButton />);
 
     expect(screen.getByRole('button')).toBeInTheDocument();
   })
 })
+
+// Screen
+
+describe('Results screen', () => {
+  it('renders screen', () => {
+    render(<ResultsScreen />);
+
+    expect(screen.getByRole('complementary')).toBeInTheDocument();
+    expect(screen.getByText(/choose/i)).toBeInTheDocument();
+  })
+})
+
+
