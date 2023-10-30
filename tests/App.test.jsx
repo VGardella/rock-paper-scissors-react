@@ -1,9 +1,28 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import App from '../src/App';
 import ChoiceButton from '../src/components/buttons/choiceButton';
 import RestartButton from '../src/components/buttons/restartButton';
 import ResultsScreen from '../src/components/result-screen/resultsScreen';
+
+// App
+
+describe('App', () => {
+  it('renders app', () => {
+    render(<App />);
+
+    screen.debug();
+  })
+})
+
+describe('App', () => {
+  it('renders game header', () => {
+    render(<App />);
+
+    expect(screen.getByRole('header').textContent).toMatch(/rock paper scissors/i);
+  })
+})
 
 // Buttons
 
