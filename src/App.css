@@ -31,6 +31,24 @@ body{
     width: 55vh;
 }
 
+.container{
+    margin: 3%;
+    width: 100%;
+}
+
+.game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons{
+    margin: 30px;
+    display: flex;
+    gap: 30px;
+}
+
+
 @font-face {
     font-family: 'Titan One';
     src: url(/src/fonts/TitanOne-Regular.ttf) format('truetype');
