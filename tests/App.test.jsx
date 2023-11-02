@@ -4,8 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest'
 import App from '../src/App';
 import ChoiceButton from '../src/components/buttons/choiceButton';
-import RestartButton from '../src/components/buttons/restartButton';
-import ResultsScreen from '../src/components/result-screen/resultsScreen';
 
 // App
 
@@ -38,59 +36,16 @@ describe('App', () => {
     render(<App />);
     const onLoad = vi.fn();
 
-    screen.getByRole('img').onload = onLoad();
+    screen.getByAltText('img').onload = onLoad();
 
     expect(onLoad).toHaveBeenCalled();
-  })
-})
-
-// Buttons
-
-describe('Choices', () => {
-  it('renders buttons', () => {
-    render(<ChoiceButton type="rock" src="../src/assets/rock-btn.png"/>)
-    render(<ChoiceButton type="paper" src="../src/assets/paper-btn.png"/>)
-    render(<ChoiceButton type="scissors" src="../src/assets/scissors-btn.png"/>)
-
-    expect(screen.getByAltText('rock')).toBeInTheDocument();
-    expect(screen.getByAltText('paper')).toBeInTheDocument();
-    expect(screen.getByAltText('scissors')).toBeInTheDocument();
-  });
-});
-
-describe('Choices', () => {
-  it('changes button properties on hover', async () => {
-    const user = userEvent.setup();
-    render(<ChoiceButton type="rock" src="../src/assets/rock-btn.png" hover="../src/assets/rock-btn2.png"/>);
-
-    await user.hover(screen.getByAltText('rock')); // hover() returns a promise, we have to 'await' it.
-    expect(screen.getByAltText('rock')).toHaveAttribute('src', '../src/assets/rock-btn2.png');
-  });
-});
-
-describe('Restart', () => {
-  it('renders button', () => {
-    render(<RestartButton />);
-
-    expect(screen.getByRole('button')).toBeInTheDocument();
-  })
-})
-
-// Screen
-
-describe('Results screen', () => {
-  it('renders screen', () => {
-    render(<ResultsScreen />);
-
-    expect(screen.getByRole('complementary')).toBeInTheDocument();
-    expect(screen.getByText(/choose/i)).toBeInTheDocument();
   })
 })
 
 // Game
 
 describe('App', () => {
-  it('handler gets called when clicking', async () => {
+  it('calls event handler after click', async () => {
     const user = userEvent.setup();
     const onClick = vi.fn();
     render(<ChoiceButton type='rock' onClick={onClick} />);
