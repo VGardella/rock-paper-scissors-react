@@ -87,4 +87,15 @@ describe('Results screen', () => {
   })
 })
 
+// Game
 
+describe('App', () => {
+  it('handler gets called when clicking', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(<ChoiceButton type='rock' onClick={onClick} />);
+
+    await user.click(screen.getByAltText('rock'));
+    expect(onClick).toHaveBeenCalled();
+  })
+})

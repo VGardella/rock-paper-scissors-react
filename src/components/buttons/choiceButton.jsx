@@ -5,9 +5,11 @@ ChoiceButton.propTypes = {
     type: PropTypes.string,
     src: PropTypes.string,
     hover: PropTypes.string,
+    onClick: PropTypes.func
 }
 
-function ChoiceButton({ type, src, hover }) {
+function ChoiceButton({ type, src, hover, onClick }) {
+
     return(
         <img 
             className='choice btn'
@@ -15,7 +17,9 @@ function ChoiceButton({ type, src, hover }) {
             alt={ type } 
             src={ src }
             onMouseOver={e => e.currentTarget.src = hover}
-            onMouseOut={e => e.currentTarget.src = src}>
+            onMouseOut={e => e.currentTarget.src = src}
+            onClick={onClick}
+            >
         </img>
     )
 }
