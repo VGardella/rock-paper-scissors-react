@@ -10,8 +10,6 @@ import ChoiceButton from '../src/components/buttons/choiceButton';
 describe('App', () => {
   it('renders app', () => {
     render(<App />);
-
-    screen.debug();
   })
 })
 
@@ -27,7 +25,7 @@ describe('App', () => {
   it('renders background image', () => {
     render(<App />);
 
-    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(screen.getByAltText(/rocket/i)).toBeInTheDocument();
   })
 })
 
@@ -36,7 +34,7 @@ describe('App', () => {
     render(<App />);
     const onLoad = vi.fn();
 
-    screen.getByAltText('img').onload = onLoad();
+    screen.getByAltText(/rocket/i).onload = onLoad();
 
     expect(onLoad).toHaveBeenCalled();
   })
