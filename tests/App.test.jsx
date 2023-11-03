@@ -5,7 +5,7 @@ import { vi } from 'vitest'
 import App from '../src/App';
 import ChoiceButton from '../src/components/buttons/choiceButton';
 
-// App
+// App layout
 
 describe('App', () => {
   it('renders app', () => {
@@ -42,7 +42,7 @@ describe('App', () => {
 
 // Game components
 
-describe('Game components', () => {
+describe('Game components: buttons', () => {
   it('calls event handler after click', async () => {
     const user = userEvent.setup();
     const onClick = vi.fn();
@@ -53,7 +53,7 @@ describe('Game components', () => {
   })
 })
 
-describe('Game components', () => {
+describe('Game components: buttons', () => {
     it('renders functional buttons', async () => {
         const user = userEvent.setup();
         const onClick = vi.fn();
@@ -66,7 +66,7 @@ describe('Game components', () => {
     })
 })
 
-describe('Game components', () => {
+describe('Game components: screen', () => {
     it('renders screen', () => {
         render(<App />);
 
@@ -76,7 +76,7 @@ describe('Game components', () => {
     })
 })
 
-describe('Game components', () => {
+describe('Game components: screen', () => {
     it('shows empty counter', async () => {
         render(<App />);
 
@@ -96,5 +96,4 @@ describe('Game components', () => {
         expect(screen.getByTestId('counter')).not.toBeEmptyDOMElement('');
     })
 })
-
 
