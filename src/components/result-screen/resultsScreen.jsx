@@ -27,6 +27,17 @@ function ResultsScreen({ computerChoice, playerChoice, winner, playerWins, compu
         }
     }, [winner, playerChoice, computerChoice, playerWins, computerWins])
 
+    useEffect(() => {
+        if (playerWins === 5) {
+            setRoundMessage('Player wins!');
+            setCounterMessage('');
+          } 
+          if (computerWins === 5) {
+            setRoundMessage('Computer wins!');
+            setCounterMessage('');
+          }
+    }, [playerWins, computerWins])
+
     return(
         <div className='results' role='complementary' >
             <div data-testid='round-info'>{winner === null ? 'Choose rock, paper or scissors!' : roundMessage}</div>

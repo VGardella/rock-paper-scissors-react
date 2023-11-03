@@ -33,3 +33,19 @@ describe('Results screen', () => {
     expect(screen.getByTestId('counter').textContent).toMatch('Player: 2 / Computer: 2')
   })
 })
+
+describe('Results screen', () => {
+  it('shows correct message: player wins game', () => {
+    render(<ResultsScreen playerWins={5}/>)
+
+    expect(screen.getByTestId('round-info').textContent).toMatch('Player wins!');
+    expect(screen.getByTestId('counter').textContent).toMatch('');
+  })
+
+  it('shows correct message: computer wins game', () => {
+    render(<ResultsScreen computerWins={5}/>)
+
+    expect(screen.getByTestId('round-info').textContent).toMatch('Computer wins!');
+    expect(screen.getByTestId('counter').textContent).toMatch('');
+  })
+})
