@@ -40,9 +40,9 @@ describe('App', () => {
   })
 })
 
-// Game
+// Game components
 
-describe('App', () => {
+describe('Game components', () => {
   it('calls event handler after click', async () => {
     const user = userEvent.setup();
     const onClick = vi.fn();
@@ -52,3 +52,30 @@ describe('App', () => {
     expect(onClick).toHaveBeenCalled();
   })
 })
+
+describe('Game components', () => {
+    it('renders buttons', async () => {
+        const user = userEvent.setup();
+        const onClick = vi.fn();
+        render(<App />);
+
+        screen.getByAltText('rock').onclick = onClick;
+    
+        await user.click(screen.getByAltText('rock'));
+        expect(onClick).toHaveBeenCalled();
+    })
+})
+
+describe('Game components', () => {
+    it('renders screen', () => {
+      render(<App />);
+
+      expect(screen.getByRole('complementary')).toBeInTheDocument();
+    })
+
+    it('renders screen', () => {
+        render(<App />);
+
+        expect(screen.getByTestId('round-info').textContent).toMatch(/choose/i);
+      })
+  })
