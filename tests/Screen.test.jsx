@@ -4,7 +4,7 @@ import ResultsScreen from '../src/components/result-screen/resultsScreen';
 
 describe('Results screen', () => {
     it('renders screen', () => {
-      render(<ResultsScreen />);
+      render(<ResultsScreen winner={0}/>);
   
       expect(screen.getByRole('complementary')).toBeInTheDocument();
       expect(screen.getByText(/choose/i)).toBeInTheDocument();
