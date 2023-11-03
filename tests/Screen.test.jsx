@@ -4,7 +4,7 @@ import ResultsScreen from '../src/components/result-screen/resultsScreen';
 
 describe('Results screen', () => {
     it('renders screen', () => {
-      render(<ResultsScreen winner={0}/>);
+      render(<ResultsScreen winner={null}/>);
   
       expect(screen.getByRole('complementary')).toBeInTheDocument();
       expect(screen.getByText(/choose/i)).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe('Results screen', () => {
   })
 
   it('shows correct message: tie', () => {
-    render(<ResultsScreen playerChoice='rock' computerChoice='rock' winner={null} playerWins={2} computerWins={2} />)
+    render(<ResultsScreen playerChoice='rock' computerChoice='rock' winner='tie' playerWins={2} computerWins={2} />)
 
     expect(screen.getByTestId('round-info').textContent).toMatch('You and the computer choose rock; Is\'s a tie!')
     expect(screen.getByTestId('counter').textContent).toMatch('Player: 2 / Computer: 2')
