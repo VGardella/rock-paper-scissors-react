@@ -7,7 +7,7 @@ import RestartButton from './components/buttons/restartButton';
 export default function App() {
   const [ playerChoice, setPlayerChoice ] = useState(null);
   const [ computerChoice, setComputerChoice ] = useState(null);
-  const [ winner, setWinner ] = useState(0);
+  const [ winner, setWinner ] = useState(null);
 
   function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
