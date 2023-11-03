@@ -20,6 +20,39 @@ export default function App() {
     setComputerChoice(getComputerChoice());
   }
 
+  useEffect(() => {
+    switch (playerChoice) {
+      case 'rock':
+        if (computerChoice === 'rock') {
+          setWinner('tie');
+        } else if (computerChoice === 'paper') {
+          setWinner('computer');
+        } else if (computerChoice === 'scissors') {
+          setWinner('player');
+        }
+        break;
+    
+      case 'paper':
+        if (computerChoice === 'paper') {
+          setWinner('tie');
+        } else if (computerChoice === 'scissors') {
+          setWinner('computer');
+        } else if (computerChoice === 'rock') {
+          setWinner('player');
+        }
+        break;
+    
+      case 'scissors':
+        if (computerChoice === 'scissors') {
+          setWinner('tie');
+        } else if (computerChoice === 'rock') {
+          setWinner('computer');
+        } else if (computerChoice === 'paper') {
+          setWinner('player');
+        }
+    }
+  }, [playerChoice, computerChoice])
+
   return (
     <div className="container">
       <div className='game'>
