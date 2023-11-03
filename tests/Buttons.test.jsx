@@ -54,3 +54,16 @@ describe('Restart', () => {
     expect(screen.getByRole('button')).toBeInTheDocument();
   })
 })
+
+describe('Restart', () => {
+  it('call function on click', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(<RestartButton onClick={onClick}/>);
+
+    const button = screen.getByRole('button');
+
+    await user.click(button);
+    expect(onClick).toHaveBeenCalled();
+  })
+})
