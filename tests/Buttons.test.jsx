@@ -6,6 +6,9 @@ import userEvent from '@testing-library/user-event';
 import ChoiceButton from '../src/components/buttons/choiceButton';
 import RestartButton from '../src/components/buttons/restartButton';
 
+
+// Choice buttons
+
 describe('Choices', () => {
     it('renders buttons', () => {
       render(<ChoiceButton type="rock" src="../src/assets/rock-btn.png"/>)
@@ -18,25 +21,17 @@ describe('Choices', () => {
     });
   });
   
-  describe('Choices', () => {
-    it('changes button properties on hover', async () => {
-      const user = userEvent.setup();
-      render(<ChoiceButton type="rock" src="../src/assets/rock-btn.png" hover="../src/assets/rock-btn2.png"/>);
-  
-      await user.hover(screen.getByAltText('rock')); // hover() returns a promise, we have to 'await' it.
-      expect(screen.getByAltText('rock')).toHaveAttribute('src', '../src/assets/rock-btn2.png');
-    });
-  });
-  
-  describe('Restart', () => {
-    it('renders button', () => {
-      render(<RestartButton />);
-  
-      expect(screen.getByRole('button')).toBeInTheDocument();
-    })
-  })
+describe('Choices', () => {
+  it('changes button properties on hover', async () => {
+    const user = userEvent.setup();
+    render(<ChoiceButton type="rock" src="../src/assets/rock-btn.png" hover="../src/assets/rock-btn2.png"/>);
 
-describe('App', () => {
+    await user.hover(screen.getByAltText('rock')); // hover() returns a promise, we have to 'await' it.
+    expect(screen.getByAltText('rock')).toHaveAttribute('src', '../src/assets/rock-btn2.png');
+  });
+});
+
+describe('Choices', () => {
   it('should update state on click', async () => {
     const user = userEvent.setup();
     const changeChoice = vi.fn();
@@ -47,5 +42,15 @@ describe('App', () => {
 
     await user.click(screen.getByAltText('rock'));
     expect(changeChoice).toHaveBeenCalled();
+  })
+})
+
+// Restart button
+
+describe('Restart', () => {
+  it('renders button', () => {
+    render(<RestartButton />);
+
+    expect(screen.getByRole('button')).toBeInTheDocument();
   })
 })
