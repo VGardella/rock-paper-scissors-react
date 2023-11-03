@@ -7,6 +7,8 @@ import RestartButton from './components/buttons/restartButton';
 export default function App() {
   const [ playerChoice, setPlayerChoice ] = useState(null);
   const [ computerChoice, setComputerChoice ] = useState(null);
+  const [ playerCounter, setPlayerCounter ] = useState(0);
+  const [ computerCounter, setComputerCounter ] = useState(0);
   const [ winner, setWinner ] = useState(null);
 
   function getComputerChoice() {
@@ -52,6 +54,14 @@ export default function App() {
         }
     }
   }, [playerChoice, computerChoice])
+
+    useEffect(() => {
+      if (winner === 'player') {
+        setPlayerCounter(p => p + 1);
+      } else if (winner === 'computer') {
+        setComputerCounter(c => c + 1);
+      }
+    }, [winner])
 
   return (
     <div className="container">
