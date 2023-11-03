@@ -1,9 +1,16 @@
 import './App.css'
+import { useState } from 'react';
 import ChoiceButton from './components/buttons/choiceButton';
 import ResultsScreen from './components/result-screen/resultsScreen';
 import RestartButton from './components/buttons/restartButton';
 
-function App() {
+export default function App() {
+  const [ choice, setChoice ] = useState(null);
+
+  function handleChoice(e) {
+    setChoice(e.currentTarget.id);
+  }
+
   return (
     <div className="container">
       <div className='game'>
@@ -12,9 +19,9 @@ function App() {
           <p>Choose one of the options:</p>
         </div>
         <div className='buttons'>
-          <ChoiceButton type="rock" src="../src/assets/rock-btn.png" hover="../src/assets/rock-btn2.png"/>
-          <ChoiceButton type="paper" src="../src/assets/paper-btn.png" hover="../src/assets/paper-btn2.png"/>
-          <ChoiceButton type="scissors" src="../src/assets/scissors-btn.png" hover="../src/assets/scissors-btn2.png"/>
+          <ChoiceButton type="rock" src="../src/assets/rock-btn.png" hover="../src/assets/rock-btn2.png" onClick={handleChoice}/>
+          <ChoiceButton type="paper" src="../src/assets/paper-btn.png" hover="../src/assets/paper-btn2.png" onClick={handleChoice}/>
+          <ChoiceButton type="scissors" src="../src/assets/scissors-btn.png" hover="../src/assets/scissors-btn2.png" onClick={handleChoice}/>
         </div>
         <div className='screen'>
           <ResultsScreen />
@@ -29,5 +36,3 @@ function App() {
     </div>
   )
 }
-
-export default App
