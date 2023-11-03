@@ -15,7 +15,7 @@ function ResultsScreen({ computerChoice, playerChoice, winner, playerWins, compu
     const [ counterMessage, setCounterMessage ] = useState(null);
 
     useEffect(() => {
-        if (winner === null) {
+        if (winner === 'tie') {
             setRoundMessage(`You and the computer choose ${computerChoice}; Is's a tie!`);
             setCounterMessage(`Player: ${playerWins} / Computer: ${computerWins}`);
         } else if (winner === 'player') {
@@ -29,8 +29,8 @@ function ResultsScreen({ computerChoice, playerChoice, winner, playerWins, compu
 
     return(
         <div className='results' role='complementary' >
-            <div data-testid='round-info'>{winner === 0 ? 'Choose rock, paper or scissors!' : roundMessage}</div>
-            <div data-testid='counter'>{winner === 0 ? '' : counterMessage}</div>
+            <div data-testid='round-info'>{winner === null ? 'Choose rock, paper or scissors!' : roundMessage}</div>
+            <div data-testid='counter'>{winner === null ? '' : counterMessage}</div>
         </div>
     )
 }
