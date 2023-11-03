@@ -68,14 +68,9 @@ describe('Game components', () => {
 
 describe('Game components', () => {
     it('renders screen', () => {
-      render(<App />);
-
-      expect(screen.getByRole('complementary')).toBeInTheDocument();
-    })
-
-    it('renders screen', () => {
         render(<App />);
 
+        expect(screen.getByRole('complementary')).toBeInTheDocument();
         expect(screen.getByTestId('round-info').textContent).toMatch(/choose/i);
         expect(screen.getByTestId('counter').textContent).toMatch('');
     })
@@ -101,3 +96,5 @@ describe('Game components', () => {
         expect(screen.getByTestId('counter')).not.toBeEmptyDOMElement('');
     })
 })
+
+
