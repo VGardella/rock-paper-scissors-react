@@ -1,14 +1,16 @@
 import './App.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ChoiceButton from './components/buttons/choiceButton';
 import ResultsScreen from './components/result-screen/resultsScreen';
 import RestartButton from './components/buttons/restartButton';
 
 export default function App() {
-  const [ choice, setChoice ] = useState(null);
+  const [ playerChoice, setPlayerChoice ] = useState(null);
+  const [ computerChoice, setComputerChoice ] = useState(null);
+  const [ winner, setWinner ] = useState(0); 
 
   function handleChoice(e) {
-    setChoice(e.currentTarget.id);
+    setPlayerChoice(e.currentTarget.id);
   }
 
   return (
@@ -24,7 +26,7 @@ export default function App() {
           <ChoiceButton type="scissors" src="../src/assets/scissors-btn.png" hover="../src/assets/scissors-btn2.png" onClick={handleChoice}/>
         </div>
         <div className='screen'>
-          <ResultsScreen />
+          <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice}/>
         </div>
         <div className='restart'>
           <RestartButton />
