@@ -7,10 +7,17 @@ import RestartButton from './components/buttons/restartButton';
 export default function App() {
   const [ playerChoice, setPlayerChoice ] = useState(null);
   const [ computerChoice, setComputerChoice ] = useState(null);
-  const [ winner, setWinner ] = useState(0); 
+  const [ winner, setWinner ] = useState(0);
+
+  function getComputerChoice() {
+    const choices = ['rock', 'paper', 'scissors'];
+    let index = Math.floor(Math.random() * choices.length);
+    return choices[index];
+  } 
 
   function handleChoice(e) {
     setPlayerChoice(e.currentTarget.id);
+    setComputerChoice(getComputerChoice());
   }
 
   return (
@@ -26,7 +33,7 @@ export default function App() {
           <ChoiceButton type="scissors" src="../src/assets/scissors-btn.png" hover="../src/assets/scissors-btn2.png" onClick={handleChoice}/>
         </div>
         <div className='screen'>
-          <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice}/>
+          <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice} winner={winner} playerWins={playerCounter} computerWins={computerCounter}/>
         </div>
         <div className='restart'>
           <RestartButton />
