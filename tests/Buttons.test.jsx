@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
+import React from 'react';
 import userEvent from '@testing-library/user-event';
 import ChoiceButton from '../src/components/buttons/choiceButton';
 import RestartButton from '../src/components/buttons/restartButton';
@@ -33,3 +35,17 @@ describe('Choices', () => {
       expect(screen.getByRole('button')).toBeInTheDocument();
     })
   })
+
+describe('App', () => {
+  it('should update state on click', async () => {
+    const user = userEvent.setup();
+    const changeChoice = vi.fn();
+    render(<ChoiceButton type='rock' onClick={changeChoice} />);
+    const handleClick = vi.spyOn(React, 'useState')
+
+    handleClick.mockImplementation(choice => [choice, changeChoice])
+
+    await user.click(screen.getByAltText('rock'));
+    expect(changeChoice).toHaveBeenCalled();
+  })
+})
