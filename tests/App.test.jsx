@@ -54,7 +54,7 @@ describe('Game components', () => {
 })
 
 describe('Game components', () => {
-    it('renders buttons', async () => {
+    it('renders functional buttons', async () => {
         const user = userEvent.setup();
         const onClick = vi.fn();
         render(<App />);
@@ -77,5 +77,27 @@ describe('Game components', () => {
         render(<App />);
 
         expect(screen.getByTestId('round-info').textContent).toMatch(/choose/i);
-      })
-  })
+        expect(screen.getByTestId('counter').textContent).toMatch('');
+    })
+})
+
+describe('Game components', () => {
+    it('shows empty counter', async () => {
+        render(<App />);
+
+        expect(screen.getByTestId('counter')).toBeEmptyDOMElement('');
+    })
+
+    it('shows counter values', async () => {
+        const user = userEvent.setup();
+        const onClick = vi.fn()
+
+        render(<App />);
+        screen.getByAltText('rock').onclick = onClick;
+
+        await user.click(screen.getByAltText('rock'));
+
+        expect(onClick).toHaveBeenCalled();
+        expect(screen.getByTestId('counter')).not.toBeEmptyDOMElement('');
+    })
+})
