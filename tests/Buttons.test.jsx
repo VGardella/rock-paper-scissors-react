@@ -56,7 +56,7 @@ describe('Restart', () => {
 })
 
 describe('Restart', () => {
-  it('call function on click', async () => {
+  it('call event handler on click', async () => {
     const user = userEvent.setup();
     const onClick = vi.fn();
     render(<RestartButton onClick={onClick}/>);

@@ -43,7 +43,7 @@ describe('App', () => {
 // Game components
 
 describe('Game components: buttons', () => {
-  it('calls event handler after click', async () => {
+  it('calls event handler on click', async () => {
     const user = userEvent.setup();
     const onClick = vi.fn();
     render(<ChoiceButton type='rock' onClick={onClick} />);
@@ -96,4 +96,3 @@ describe('Game components: screen', () => {
         expect(screen.getByTestId('counter')).not.toBeEmptyDOMElement('');
     })
 })
-
