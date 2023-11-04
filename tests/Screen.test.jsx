@@ -49,3 +49,19 @@ describe('Results screen', () => {
     expect(screen.getByTestId('counter').textContent).toMatch('');
   })
 })
+
+describe('Results screen', () => {
+  it('changes style of winners message', () => {
+    render(<ResultsScreen playerWins={5} />);
+
+    expect(screen.getByTestId('round-info').textContent).toMatch('Player wins!');
+    expect(screen.getByTestId('round-info')).toHaveClass('blink');
+  })
+
+  it('changes style of winners message', () => {
+    render(<ResultsScreen computerWins={5} />);
+
+    expect(screen.getByTestId('round-info').textContent).toMatch('Computer wins!');
+    expect(screen.getByTestId('round-info')).toHaveClass('blink');
+  })
+})

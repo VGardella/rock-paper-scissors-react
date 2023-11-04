@@ -13,6 +13,27 @@ ResultsScreen.propTypes = {
 function ResultsScreen({ computerChoice, playerChoice, winner, playerWins, computerWins }) {
     const [ roundMessage, setRoundMessage ] = useState(null);
     const [ counterMessage, setCounterMessage ] = useState(null);
+    const [ style, setStyle ] = useState(false);
+    let roundStyle, counterStyle, className;
+
+    if (style) {
+        roundStyle = {
+            'fontSize': '30px',
+        };
+        counterStyle = {
+            'display': 'none'
+        }
+        className = 'blink'
+    }
+    else if (!style) {
+        roundStyle = {
+            'fontSize': '20px'
+        };
+        counterStyle = {
+            'display': 'block'
+        }
+        className = ''
+    }
 
     useEffect(() => {
         if (winner === 'tie') {
@@ -29,10 +50,12 @@ function ResultsScreen({ computerChoice, playerChoice, winner, playerWins, compu
 
     useEffect(() => {
         if (playerWins === 5) {
+            setStyle(true)
             setRoundMessage('Player wins!');
             setCounterMessage('');
           } 
           if (computerWins === 5) {
+            setStyle(true)
             setRoundMessage('Computer wins!');
             setCounterMessage('');
           }
@@ -40,8 +63,8 @@ function ResultsScreen({ computerChoice, playerChoice, winner, playerWins, compu
 
     return(
         <div className='results' role='complementary' >
-            <div data-testid='round-info'>{winner === null ? 'Choose rock, paper or scissors!' : roundMessage}</div>
-            <div data-testid='counter'>{winner === null ? '' : counterMessage}</div>
+            <div data-testid='round-info' style={roundStyle} className={className} >{winner === null ? 'Choose rock, paper or scissors!' : roundMessage}</div>
+            <div data-testid='counter' style={counterStyle}>{winner === null ? '' : counterMessage}</div>
         </div>
     )
 }
