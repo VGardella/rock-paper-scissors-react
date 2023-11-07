@@ -15,11 +15,19 @@ export default function App() {
     const choices = ['rock', 'paper', 'scissors'];
     let index = Math.floor(Math.random() * choices.length);
     return choices[index];
-  } 
+  }
 
   function handleChoice(e) {
     setPlayerChoice(e.currentTarget.id);
     setComputerChoice(getComputerChoice());
+  }
+
+  function restartGame() {
+    setWinner(null);
+    setComputerChoice(null);
+    setPlayerChoice(null);
+    setPlayerCounter(0);
+    setComputerCounter(0);
   }
 
   useEffect(() => {
@@ -29,8 +37,10 @@ export default function App() {
           setWinner('tie');
         } else if (computerChoice === 'paper') {
           setWinner('computer');
+          setComputerCounter(c => c + 1);
         } else if (computerChoice === 'scissors') {
           setWinner('player');
+          setPlayerCounter(p => p + 1);
         }
         break;
     
@@ -39,8 +49,10 @@ export default function App() {
           setWinner('tie');
         } else if (computerChoice === 'scissors') {
           setWinner('computer');
+          setComputerCounter(c => c + 1);
         } else if (computerChoice === 'rock') {
           setWinner('player');
+          setPlayerCounter(p => p + 1);
         }
         break;
     
@@ -49,19 +61,14 @@ export default function App() {
           setWinner('tie');
         } else if (computerChoice === 'rock') {
           setWinner('computer');
+          setComputerCounter(c => c + 1);
         } else if (computerChoice === 'paper') {
           setWinner('player');
+          setPlayerCounter(p => p + 1);
         }
     }
+    
   }, [playerChoice, computerChoice])
-
-    useEffect(() => {
-      if (winner === 'player') {
-        setPlayerCounter(p => p + 1);
-      } else if (winner === 'computer') {
-        setComputerCounter(c => c + 1);
-      }
-    }, [winner])
 
   return (
     <div className="container">
@@ -76,10 +83,10 @@ export default function App() {
           <ChoiceButton type="scissors" src="../src/assets/scissors-btn.png" hover="../src/assets/scissors-btn2.png" onClick={handleChoice}/>
         </div>
         <div className='screen'>
-          <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice} winner={winner} playerWins={playerCounter} computerWins={computerCounter}/>
+          <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice} winner={winner} playerWins={playerCounter} computerWins={computerCounter} restartFunc={restartGame}/>
         </div>
         <div className='restart'>
-          <RestartButton />
+          <RestartButton onClick={restartGame}/>
         </div>
       </div>
       <div>
