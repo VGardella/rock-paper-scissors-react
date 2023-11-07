@@ -9,6 +9,7 @@ export default function App() {
   const [ computerChoice, setComputerChoice ] = useState(null);
   const [ playerCounter, setPlayerCounter ] = useState(0);
   const [ computerCounter, setComputerCounter ] = useState(0);
+  const [ roundCounter, setRoundCounter ] = useState(0)
   const [ winner, setWinner ] = useState(null);
 
   function getComputerChoice() {
@@ -20,6 +21,7 @@ export default function App() {
   function handleChoice(e) {
     setPlayerChoice(e.currentTarget.id);
     setComputerChoice(getComputerChoice());
+    setRoundCounter(r => r + 1);
   }
 
   function restartGame() {
@@ -68,7 +70,7 @@ export default function App() {
         }
     }
     
-  }, [playerChoice, computerChoice])
+  }, [playerChoice, computerChoice, roundCounter])
 
   return (
     <div className="container">
