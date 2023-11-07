@@ -33,6 +33,14 @@ export default function App() {
   }
 
   useEffect(() => {
+    if (playerCounter === 5 || computerCounter === 5) {
+        setTimeout(() => {
+            restartGame();
+        }, 3000);
+      } 
+  }, [playerCounter, computerCounter])
+
+  useEffect(() => {
     switch (playerChoice) {
       case 'rock':
         if (computerChoice === 'rock') {
