@@ -9,8 +9,9 @@ export default function App() {
   const [ computerChoice, setComputerChoice ] = useState(null);
   const [ playerCounter, setPlayerCounter ] = useState(0);
   const [ computerCounter, setComputerCounter ] = useState(0);
-  const [ roundCounter, setRoundCounter ] = useState(0)
+  const [ roundCounter, setRoundCounter ] = useState(0);
   const [ winner, setWinner ] = useState(null);
+
 
   function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
@@ -34,9 +35,9 @@ export default function App() {
 
   useEffect(() => {
     if (playerCounter === 5 || computerCounter === 5) {
-        setTimeout(() => {
-            restartGame();
-        }, 3000);
+      setTimeout(() => {
+          restartGame();
+      }, 3000);
       } 
   }, [playerCounter, computerCounter])
 
@@ -88,9 +89,9 @@ export default function App() {
           <p>Choose one of the options:</p>
         </div>
         <div className='buttons'>
-          <ChoiceButton type="rock" src="../src/assets/rock-btn.png" hover="../src/assets/rock-btn2.png" onClick={handleChoice}/>
-          <ChoiceButton type="paper" src="../src/assets/paper-btn.png" hover="../src/assets/paper-btn2.png" onClick={handleChoice}/>
-          <ChoiceButton type="scissors" src="../src/assets/scissors-btn.png" hover="../src/assets/scissors-btn2.png" onClick={handleChoice}/>
+          <ChoiceButton type="rock" src="assets/rock-btn.png" hover="assets/rock-btn2.png" onClick={handleChoice}/>
+          <ChoiceButton type="paper" src="assets/paper-btn.png" hover="assets/paper-btn2.png" onClick={handleChoice}/>
+          <ChoiceButton type="scissors" src="assets/scissors-btn.png" hover="assets/scissors-btn2.png" onClick={handleChoice}/>
         </div>
         <div className='screen'>
           <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice} winner={winner} playerWins={playerCounter} computerWins={computerCounter} restartFunc={restartGame}/>
@@ -100,7 +101,7 @@ export default function App() {
         </div>
       </div>
       <div>
-        <img className='background' alt='A very cool rocket!' src='/src/assets/rocket-back2-2.png'></img>
+        <img className='background' alt='A very cool rocket!' src='assets/rocket-back2-2.png'></img>
       </div>
     </div>
   )
