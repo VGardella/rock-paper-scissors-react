@@ -12,7 +12,7 @@ export default function App() {
   const [ roundCounter, setRoundCounter ] = useState(0);
   const [ winner, setWinner ] = useState(null);
   const [ buttonStyle, setButtonStyle ] = useState(false);
-
+  const [ screenStyle, setScreenStyle ] = useState(false);
   let buttonClass;
 
   function getComputerChoice() {
@@ -35,6 +35,7 @@ export default function App() {
     setComputerCounter(0);
     setRoundCounter(0);
     setButtonStyle(false);
+    setScreenStyle(false)
   }
 
   if (buttonStyle) {
@@ -47,7 +48,8 @@ export default function App() {
 
   useEffect(() => {
     if (playerCounter === 5 || computerCounter === 5) {
-      setButtonStyle(true)
+      setButtonStyle(true);
+      setScreenStyle(true);
       setTimeout(() => {
         restartGame();
       }, 3000)
@@ -107,7 +109,7 @@ export default function App() {
           <ChoiceButton type="scissors" src="assets/scissors-btn.png" hover="assets/scissors-btn2.png" onClick={handleChoice} className={buttonClass}/>
         </div>
         <div className='screen'>
-          <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice} winner={winner} playerWins={playerCounter} computerWins={computerCounter} restartFunc={restartGame}/>
+          <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice} winner={winner} playerWins={playerCounter} computerWins={computerCounter} restartFunc={restartGame} className={screenStyle ? 'blink' : ''} style={screenStyle ? {'display': 'none'} : {'display': 'block'}}/>
         </div>
         <div className='restart'>
           <RestartButton onClick={restartGame}/>
