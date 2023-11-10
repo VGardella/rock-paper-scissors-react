@@ -48,6 +48,10 @@ body{
     gap: 30px;
 }
 
+.button{
+    pointer-events: none;
+}
+
 
 @font-face {
     font-family: 'Titan One';

@@ -11,7 +11,9 @@ export default function App() {
   const [ computerCounter, setComputerCounter ] = useState(0);
   const [ roundCounter, setRoundCounter ] = useState(0);
   const [ winner, setWinner ] = useState(null);
+  const [ buttonStyle, setButtonStyle ] = useState(false);
 
+  let buttonClass;
 
   function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
@@ -31,13 +33,24 @@ export default function App() {
     setPlayerChoice(null);
     setPlayerCounter(0);
     setComputerCounter(0);
+    setRoundCounter(0);
+    setButtonStyle(false);
   }
+
+  if (buttonStyle) {
+    buttonClass = 'button'
+  }
+  else if (!buttonStyle) {
+    buttonClass = ''
+  }
+  
 
   useEffect(() => {
     if (playerCounter === 5 || computerCounter === 5) {
+      setButtonStyle(true)
       setTimeout(() => {
-          restartGame();
-      }, 3000);
+        restartGame();
+      }, 3000)
       } 
   }, [playerCounter, computerCounter])
 
@@ -89,9 +102,9 @@ export default function App() {
           <p>Choose one of the options:</p>
         </div>
         <div className='buttons'>
-          <ChoiceButton type="rock" src="assets/rock-btn.png" hover="assets/rock-btn2.png" onClick={handleChoice}/>
-          <ChoiceButton type="paper" src="assets/paper-btn.png" hover="assets/paper-btn2.png" onClick={handleChoice}/>
-          <ChoiceButton type="scissors" src="assets/scissors-btn.png" hover="assets/scissors-btn2.png" onClick={handleChoice}/>
+          <ChoiceButton type="rock" src="assets/rock-btn.png" hover="assets/rock-btn2.png" onClick={handleChoice} className={buttonClass}/>
+          <ChoiceButton type="paper" src="assets/paper-btn.png" hover="assets/paper-btn2.png" onClick={handleChoice} className={buttonClass}/>
+          <ChoiceButton type="scissors" src="assets/scissors-btn.png" hover="assets/scissors-btn2.png" onClick={handleChoice} className={buttonClass}/>
         </div>
         <div className='screen'>
           <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice} winner={winner} playerWins={playerCounter} computerWins={computerCounter} restartFunc={restartGame}/>

@@ -5,14 +5,15 @@ ChoiceButton.propTypes = {
     type: PropTypes.string,
     src: PropTypes.string,
     hover: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    className: PropTypes.string
 }
 
-function ChoiceButton({ type, src, hover, onClick }) {
+function ChoiceButton({ type, src, hover, onClick, className }) {
 
     return(
         <img 
-            className='choice btn'
+            className={`choice btn ${className}`}
             id = { type }
             alt={ type } 
             src={ src }
