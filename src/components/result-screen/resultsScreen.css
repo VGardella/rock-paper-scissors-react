@@ -14,6 +14,11 @@
     text-align: center;
 }
 
+.blink {
+    animation: blink 1s step-start 3;
+    font-size: 30px;
+  }
+
 @font-face {
     font-family: 'Concert One';
     src: url(../../fonts/ConcertOne-Regular.ttf) format('truetype');
@@ -21,10 +26,6 @@
 
 /* ANIMATION */
 
-.blink {
-    animation: blink 1s step-start 3;
-  }
-  
   @keyframes blink {
     25% {
       opacity: 0;
