@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import ResultsScreen from '../src/components/result-screen/resultsScreen';
 
 describe('Results screen', () => {
@@ -51,17 +51,63 @@ describe('Results screen', () => {
 })
 
 describe('Results screen', () => {
-  it('changes style of winners message', () => {
-    render(<ResultsScreen playerWins={5} />);
+  it('changes style of winners message: player', () => {
+    render(
+      <ResultsScreen       
+        computerChoice="scissors"
+        playerChoice="rock"
+        winner="player"
+        playerWins={4}
+        computerWins={2} 
+      />
+    );
+    
+    expect(screen.getByTestId('round-info')).toBeInTheDocument();
+    expect(screen.getByTestId('round-info')).not.toHaveClass('blink');
 
-    expect(screen.getByTestId('round-info').textContent).toMatch('Player wins!');
-    expect(screen.getByTestId('round-info')).toHaveClass('blink');
-  })
+    render(
+      <ResultsScreen
+        computerChoice="scissors"
+        playerChoice="rock"
+        winner="player"
+        playerWins={5}
+        computerWins={2}
+      />
+    );
 
-  it('changes style of winners message', () => {
-    render(<ResultsScreen computerWins={5} />);
+    waitFor(() => {
+      expect(screen.getByText('Player wins!')).toBeInTheDocument();
+      expect(screen.getByText('Player wins!')).toHaveClass('blink');
+    });
+  });
 
-    expect(screen.getByTestId('round-info').textContent).toMatch('Computer wins!');
-    expect(screen.getByTestId('round-info')).toHaveClass('blink');
-  })
-})
+  it('changes style of winners message: computer', () => {
+    render(
+      <ResultsScreen       
+        computerChoice="scissors"
+        playerChoice="rock"
+        winner="player"
+        playerWins={2}
+        computerWins={4} 
+      />
+    );
+    
+    expect(screen.getByTestId('round-info')).toBeInTheDocument();
+    expect(screen.getByTestId('round-info')).not.toHaveClass('blink');
+
+    render(
+      <ResultsScreen
+        computerChoice="scissors"
+        playerChoice="rock"
+        winner="player"
+        playerWins={2}
+        computerWins={5}
+      />
+    );
+
+    waitFor(() => {
+      expect(screen.getByText('Player wins!')).toBeInTheDocument();
+      expect(screen.getByText('Player wins!')).toHaveClass('blink');
+    });
+  });
+});
