@@ -8,10 +8,11 @@ ResultsScreen.propTypes = {
     winner: PropTypes.string,
     playerWins: PropTypes.number,
     computerWins: PropTypes.number,
-    className: PropTypes.object
+    className: PropTypes.string,
+    style: PropTypes.object
 }
 
-function ResultsScreen({ computerChoice, playerChoice, winner, playerWins, computerWins, className }) {
+function ResultsScreen({ computerChoice, playerChoice, winner, playerWins, computerWins, className, style }) {
     const [ roundMessage, setRoundMessage ] = useState(null);
     const [ counterMessage, setCounterMessage ] = useState(null);
 
@@ -41,7 +42,7 @@ function ResultsScreen({ computerChoice, playerChoice, winner, playerWins, compu
     return(
         <div className='results' role='complementary' >
             <div data-testid='round-info' className={className}>{winner === null ? 'Choose rock, paper or scissors!' : roundMessage}</div>
-            <div data-testid='counter' className={className}>{winner === null ? '' : counterMessage}</div>
+            <div data-testid='counter' style={style}>{winner === null ? '' : counterMessage}</div>
         </div>
     )
 }
