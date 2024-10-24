@@ -104,9 +104,9 @@ export default function App() {
           <p>Choose one of the options:</p>
         </div>
         <div className='buttons'>
-          <ChoiceButton type="rock" src="src/assets/images/rock-btn.png" hover="src/assets/images/rock-btn2.png" onClick={handleChoice} className={buttonClass}/>
-          <ChoiceButton type="paper" src="src/assets/images/paper-btn.png" hover="src/assets/images/paper-btn2.png" onClick={handleChoice} className={buttonClass}/>
-          <ChoiceButton type="scissors" src="src/assets/images/scissors-btn.png" hover="src/assets/images/scissors-btn2.png" onClick={handleChoice} className={buttonClass}/>
+          <ChoiceButton type="rock" onClick={handleChoice} className={buttonClass}/>
+          <ChoiceButton type="paper" onClick={handleChoice} className={buttonClass}/>
+          <ChoiceButton type="scissors" onClick={handleChoice} className={buttonClass}/>
         </div>
         <div className='screen'>
           <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice} winner={winner} playerWins={playerCounter} computerWins={computerCounter} restartFunc={restartGame} className={screenStyle ? 'blink' : ''} style={screenStyle ? {'display': 'none'} : {'display': 'block'}}/>
