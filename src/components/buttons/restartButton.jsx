@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './restartButton.css';
+import '../../assets/styles/restartButton.css';
 
 RestartButton.propTypes = {
     onClick: PropTypes.func

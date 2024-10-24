@@ -1,4 +1,4 @@
-import './resultsScreen.css';
+import '../../assets/styles/resultsScreen.css';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 

@@ -55,6 +55,6 @@ body{
 
 @font-face {
     font-family: 'Titan One';
-    src: url(/src/fonts/TitanOne-Regular.ttf) format('truetype');
+    src: url(../fonts/TitanOne-Regular.ttf) format('truetype');
 }
 

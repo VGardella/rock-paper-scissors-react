@@ -1,8 +1,8 @@
-import './App.css'
+import '../public/styles/App.css'
 import { useState, useEffect } from 'react';
-import ChoiceButton from './components/buttons/choiceButton';
-import ResultsScreen from './components/result-screen/resultsScreen';
-import RestartButton from './components/buttons/restartButton';
+import ChoiceButton from './components/buttons/choiceButton.jsx';
+import ResultsScreen from './components/result-screen/resultsScreen.jsx';
+import RestartButton from './components/buttons/restartButton.jsx';
 
 export default function App() {
   const [ playerChoice, setPlayerChoice ] = useState(null);
@@ -104,9 +104,9 @@ export default function App() {
           <p>Choose one of the options:</p>
         </div>
         <div className='buttons'>
-          <ChoiceButton type="rock" src="assets/rock-btn.png" hover="assets/rock-btn2.png" onClick={handleChoice} className={buttonClass}/>
-          <ChoiceButton type="paper" src="assets/paper-btn.png" hover="assets/paper-btn2.png" onClick={handleChoice} className={buttonClass}/>
-          <ChoiceButton type="scissors" src="assets/scissors-btn.png" hover="assets/scissors-btn2.png" onClick={handleChoice} className={buttonClass}/>
+          <ChoiceButton type="rock" src="src/assets/images/rock-btn.png" hover="src/assets/images/rock-btn2.png" onClick={handleChoice} className={buttonClass}/>
+          <ChoiceButton type="paper" src="src/assets/images/paper-btn.png" hover="src/assets/images/paper-btn2.png" onClick={handleChoice} className={buttonClass}/>
+          <ChoiceButton type="scissors" src="src/assets/images/scissors-btn.png" hover="src/assets/images/scissors-btn2.png" onClick={handleChoice} className={buttonClass}/>
         </div>
         <div className='screen'>
           <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice} winner={winner} playerWins={playerCounter} computerWins={computerCounter} restartFunc={restartGame} className={screenStyle ? 'blink' : ''} style={screenStyle ? {'display': 'none'} : {'display': 'block'}}/>
