@@ -24,10 +24,10 @@ describe('Choices', () => {
 describe('Choices', () => {
   it('changes button properties on hover', async () => {
     const user = userEvent.setup();
-    render(<ChoiceButton type="rock" src="../src/assets/rock-btn.png" hover="../src/assets/rock-btn2.png"/>);
+    render(<ChoiceButton type="rock"/>);
 
     await user.hover(screen.getByAltText('rock')); // hover() returns a promise, we have to 'await' it.
-    expect(screen.getByAltText('rock')).toHaveAttribute('src', '../src/assets/rock-btn2.png');
+    expect(screen.getByAltText('rock')).toHaveAttribute('src', '/rock-paper-scissors-react/src/assets/images/rock-btn2.png');
   });
 });
 
