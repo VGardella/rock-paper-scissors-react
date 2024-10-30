@@ -5,96 +5,81 @@ import ResultsScreen from './components/result-screen/resultsScreen.jsx';
 import RestartButton from './components/buttons/restartButton.jsx';
 
 export default function App() {
-  const [ playerChoice, setPlayerChoice ] = useState(null);
-  const [ computerChoice, setComputerChoice ] = useState(null);
-  const [ playerCounter, setPlayerCounter ] = useState(0);
-  const [ computerCounter, setComputerCounter ] = useState(0);
-  const [ roundCounter, setRoundCounter ] = useState(0);
-  const [ winner, setWinner ] = useState(null);
-  const [ buttonStyle, setButtonStyle ] = useState(false);
-  const [ screenStyle, setScreenStyle ] = useState(false);
-  let buttonClass;
+  const [gameState, setGameState] = useState({
+    playerChoice: null,
+    computerChoice: null,
+    playerCounter: 0,
+    computerCounter: 0,
+    roundCounter: 0,
+    winner: null,
+    endGame: false,
+    buttonStyle: false,
+    screenStyle: false,
+  });
 
   function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
-    let index = Math.floor(Math.random() * choices.length);
-    return choices[index];
+    return choices[Math.floor(Math.random() * choices.length)];
   }
 
   function handleChoice(e) {
-    setPlayerChoice(e.currentTarget.id);
-    setComputerChoice(getComputerChoice());
-    setRoundCounter(r => r + 1);
+    const playerChoice = e.currentTarget.id;
+    const computerChoice = getComputerChoice();
+    const winner = determineWinner(playerChoice, computerChoice);
+
+    setGameState(prevState => {
+      const playerCounter = winner === 'player' ? prevState.playerCounter + 1 : prevState.playerCounter;
+      const computerCounter = winner === 'computer' ? prevState.computerCounter + 1 : prevState.computerCounter;
+      const endGame = playerCounter === 5 || computerCounter === 5;
+
+      return {
+        ...prevState,
+        playerChoice,
+        computerChoice,
+        roundCounter: prevState.roundCounter + 1,
+        playerCounter,
+        computerCounter,
+        winner,
+        endGame,
+        buttonStyle: endGame,
+        screenStyle: endGame,
+      };
+    });
+
   }
+
+  useEffect(() => {
+    if (gameState.endGame) {
+      setTimeout(() => restartGame(), 3000);
+    }
+  }, [gameState.endGame])
 
   function restartGame() {
-    setWinner(null);
-    setComputerChoice(null);
-    setPlayerChoice(null);
-    setPlayerCounter(0);
-    setComputerCounter(0);
-    setRoundCounter(0);
-    setButtonStyle(false);
-    setScreenStyle(false)
+    setGameState({
+      playerChoice: null,
+      computerChoice: null,
+      playerCounter: 0,
+      computerCounter: 0,
+      roundCounter: 0,
+      winner: null,
+      endGame: false,
+      buttonStyle: false,
+      screenStyle: false,
+    })
   }
 
-  if (buttonStyle) {
-    buttonClass = 'button'
-  }
-  else if (!buttonStyle) {
-    buttonClass = ''
-  }
-  
-
-  useEffect(() => {
-    if (playerCounter === 5 || computerCounter === 5) {
-      setButtonStyle(true);
-      setScreenStyle(true);
-      setTimeout(() => {
-        restartGame();
-      }, 3000)
-      } 
-  }, [playerCounter, computerCounter])
-
-  useEffect(() => {
-    switch (playerChoice) {
-      case 'rock':
-        if (computerChoice === 'rock') {
-          setWinner('tie');
-        } else if (computerChoice === 'paper') {
-          setWinner('computer');
-          setComputerCounter(c => c + 1);
-        } else if (computerChoice === 'scissors') {
-          setWinner('player');
-          setPlayerCounter(p => p + 1);
-        }
-        break;
-    
-      case 'paper':
-        if (computerChoice === 'paper') {
-          setWinner('tie');
-        } else if (computerChoice === 'scissors') {
-          setWinner('computer');
-          setComputerCounter(c => c + 1);
-        } else if (computerChoice === 'rock') {
-          setWinner('player');
-          setPlayerCounter(p => p + 1);
-        }
-        break;
-    
-      case 'scissors':
-        if (computerChoice === 'scissors') {
-          setWinner('tie');
-        } else if (computerChoice === 'rock') {
-          setWinner('computer');
-          setComputerCounter(c => c + 1);
-        } else if (computerChoice === 'paper') {
-          setWinner('player');
-          setPlayerCounter(p => p + 1);
-        }
+  function determineWinner(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) return 'tie';
+    if (
+      (playerChoice === 'rock' && computerChoice === 'scissors') ||
+      (playerChoice === 'paper' && computerChoice === 'rock') ||
+      (playerChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+      return 'player'
     }
     
-  }, [playerChoice, computerChoice, roundCounter])
+    return 'computer'
+  }
 
   return (
     <div className="container">
@@ -104,12 +89,12 @@ export default function App() {
           <p>Choose one of the options:</p>
         </div>
         <div className='buttons'>
-          <ChoiceButton type="rock" onClick={handleChoice} className={buttonClass}/>
-          <ChoiceButton type="paper" onClick={handleChoice} className={buttonClass}/>
-          <ChoiceButton type="scissors" onClick={handleChoice} className={buttonClass}/>
+          {['rock', 'paper', 'scissors'].map(choice => (
+            <ChoiceButton key={choice} type={choice} onClick={handleChoice} className={gameState.buttonStyle ? 'button' : ''}/>
+          ))}
         </div>
         <div className='screen'>
-          <ResultsScreen computerChoice={computerChoice} playerChoice={playerChoice} winner={winner} playerWins={playerCounter} computerWins={computerCounter} restartFunc={restartGame} className={screenStyle ? 'blink' : ''} style={screenStyle ? {'display': 'none'} : {'display': 'block'}}/>
+          <ResultsScreen computerChoice={gameState.computerChoice} playerChoice={gameState.playerChoice} winner={gameState.winner} playerWins={gameState.playerCounter} computerWins={gameState.computerCounter} restartFunc={restartGame} className={gameState.screenStyle ? 'blink' : ''} style={gameState.screenStyle ? {'display': 'none'} : {'display': 'block'}}/>
         </div>
         <div className='restart'>
           <RestartButton onClick={restartGame}/>
